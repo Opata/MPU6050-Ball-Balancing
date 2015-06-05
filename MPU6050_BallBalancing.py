@@ -21,6 +21,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 500), 0, 32)
 pygame.display.set_caption('MPU_6050-Balancing Ball ')
 
+#gem2.png image can be found in raspberry pi 2: " /home/pi/python_games"  folder.
 ball = pygame.image.load("gem2.png")
 
   
@@ -131,7 +132,8 @@ while True:
     #print last_x (X-angle),last_y (Y-angle) on terminal window
     print (last_x), (last_y)
     
-    xb = xb - speed * last_y  #x-coordinate of the ball depend on the angle & speed
+    #x-coordinate of the ball depend on the angle & speed
+    xb = xb - speed * last_y  
     
     angle_radian = math.radians(last_y)
     a = math.cos(angle_radian)
@@ -143,7 +145,7 @@ while True:
     x2 = x0 + (r * a)
     y2 = y0 - (r * b)
 	
-	#some mathematics to move the ball on the line (y-coordinate)
+    #some maths to keep the ball on the line (y-coordinate)
     yb = (-m * (xb - x1) + y1)
     
     #drop the ball at the ends of the line
@@ -159,7 +161,7 @@ while True:
     
     pygame.draw.line(screen, COLOR, (x1,y1), (x2,y2), 10) 
     
-    screen.blit(ball, (xb-30,yb-60))
+    screen.blit(ball, (xb-30,yb-60)) #off set to draw the ball on line
     
 
     pygame.display.update()
